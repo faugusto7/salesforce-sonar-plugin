@@ -33,50 +33,64 @@ public class SalesforceProfile implements BuiltInQualityProfilesDefinition {
 		NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("Salesforce", SalesforcePlugin.LANGUAGE_KEY);
 		profile.setDefault(true);
 
+		// Rules of Best Practices
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexUnitTestShouldNotUseSeeAllDataTrue");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidLogicInTrigger");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexUnitTestClassShouldHaveAsserts");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidGlobalModifier");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexAssertionsShouldIncludeMessage");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexUnitTestMethodShouldHaveIsTestAnnotation");
 
+		// Rules of Code Style
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "IfElseStmtsMustUseBraces");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "WhileLoopsMustUseBraces");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexXSSFromURLParam");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexSuggestUsingNamedCred");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidSoslInLoops");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexSOQLInjection");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexXSSFromEscapeFalse");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyIfStmt");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessiveClassLength");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexBadCrypto");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexUnitTestShouldNotUseSeeAllDataTrue");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "NcssMethodCount");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "StdCyclomaticComplexity");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexCSRF");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidLogicInTrigger");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessiveParameterList");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyCatchBlock");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "NcssConstructorCount");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyWhileStmt");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexUnitTestClassShouldHaveAsserts");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ClassNamingConventions");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ForLoopsMustUseBraces");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "CyclomaticComplexity");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "IfStmtsMustUseBraces");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "MethodNamingConventions");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FieldNamingConventions");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FieldDeclarationsShouldBeAtStart");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FormalParameterNamingConventions");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "LocalVariableNamingConventions");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "PropertyNamingConventions");
+
+		// Rules of Security
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexXSSFromURLParam");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexSuggestUsingNamedCred");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexSOQLInjection");		
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexXSSFromEscapeFalse");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexBadCrypto");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexInsecureEndpoint");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyStatementBlock");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidGlobalModifier");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyTryOrFinallyBlock");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexCRUDViolation");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexOpenRedirect");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexSharingViolations");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDirectAccessTriggerMap");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDmlStatementsInLoops");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "IfStmtsMustUseBraces");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "VariableNamingConventions");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "MethodWithSameNameAsEnclosingClass");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessivePublicCount");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "NcssTypeCount");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "MethodNamingConventions");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidSoqlInLoops");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidHardcodingId");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDeeplyNestedIfStmts");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "TooManyFields");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexDangerousMethods");
+
+		// Rules of Performance
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidSoslInLoops");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDmlStatementsInLoops");		
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidSoqlInLoops");
+
+		// Rules of Error Prone
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyIfStmt");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyCatchBlock");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyWhileStmt");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyStatementBlock");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "EmptyTryOrFinallyBlock");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDirectAccessTriggerMap");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "MethodWithSameNameAsEnclosingClass");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidHardcodingId");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidNonExistentAnnotations");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ApexCSRF");
+
+		// Rules of Design
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessiveClassLength");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "StdCyclomaticComplexity");		
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessivePublicCount");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "ExcessiveParameterList");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "CyclomaticComplexity");
+		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "AvoidDeeplyNestedIfStmts");
+
 		profile.done();
 	}
 
