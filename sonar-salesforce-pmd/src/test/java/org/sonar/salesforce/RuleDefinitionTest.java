@@ -51,9 +51,7 @@ public class RuleDefinitionTest {
          System.out.println(rule.key());
     }
 
-
-
-    assertThat(rules.size()).isEqualTo(46);
+    assertThat(rules.size()).isEqualTo(45);
   }
 
 }

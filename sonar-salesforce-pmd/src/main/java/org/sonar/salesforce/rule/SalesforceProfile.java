@@ -49,7 +49,6 @@ public class SalesforceProfile implements BuiltInQualityProfilesDefinition {
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "IfStmtsMustUseBraces");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "MethodNamingConventions");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FieldNamingConventions");
-		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FieldDeclarationsShouldBeAtStart");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "FormalParameterNamingConventions");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "LocalVariableNamingConventions");
 		profile.activateRule(SalesforcePlugin.REPOSITORY_KEY, "PropertyNamingConventions");

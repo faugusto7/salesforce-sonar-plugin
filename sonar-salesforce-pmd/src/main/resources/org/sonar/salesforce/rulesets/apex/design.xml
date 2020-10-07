@@ -18,6 +18,9 @@ Rules that help you discover design issues.
 Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.
         </description>
         <priority>3</priority>
+        <properties>
+            <property name="problemDepth" value="5" />                    
+        </properties>
         <example>
 <![CDATA[
 public class Foo {
@@ -57,6 +60,10 @@ Reported methods should be broken down into several smaller methods. Reported cl
 into subcomponents.
         </description>
         <priority>3</priority>
+        <properties>
+            <property name="classReportLevel" value="65" />
+            <property name="methodReportLevel" value="18" />
+        </properties>        
         <example>
 <![CDATA[
 public class Complicated {
@@ -127,6 +134,9 @@ Methods with numerous parameters are a challenge to maintain, especially if most
 same datatype. These situations usually denote the need for new objects to wrap the numerous parameters.
         </description>
         <priority>3</priority>
+        <properties>
+            <property name="minimum" value="7.0" />
+        </properties>        
         <example>
 <![CDATA[
 // too many arguments liable to be mixed up
@@ -165,90 +175,6 @@ public class Foo {
     public void doMoreWork() {}
     public void doWorkAgain() {}
     // [... more more public methods ...]
-}
-]]>
-        </example>
-    </rule>
-
-    <rule name="NcssConstructorCount"
-          since="5.5.0"
-          message="The constructor has an NCSS line count of {0}"
-          class="net.sourceforge.pmd.lang.apex.rule.design.NcssConstructorCountRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#ncssconstructorcount">
-        <description>
-This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines
-of code for a given constructor. NCSS ignores comments, and counts actual statements. Using this algorithm,
-lines of code that are split are counted as one.
-        </description>
-        <priority>3</priority>
-        <example>
-<![CDATA[
-public class Foo extends Bar {
-    //this constructor only has 1 NCSS lines
-    public Foo() {
-        super();
-
-
-
-
-        super.foo();
-}
-}
-]]>
-        </example>
-    </rule>
-
-    <rule name="NcssMethodCount"
-          since="5.5.0"
-          message="The method ''{0}()'' has an NCSS line count of {1}"
-          class="net.sourceforge.pmd.lang.apex.rule.design.NcssMethodCountRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#ncssmethodcount">
-        <description>
-This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines
-of code for a given method. NCSS ignores comments, and counts actual statements. Using this algorithm,
-lines of code that are split are counted as one.
-        </description>
-        <priority>3</priority>
-        <example>
-<![CDATA[
-public class Foo extends Bar {
-    //this method only has 1 NCSS lines
-    public Integer methd() {
-        super.methd();
-
-
-
-        return 1;
-    }
-}
-]]>
-        </example>
-    </rule>
-
-    <rule name="NcssTypeCount"
-          since="5.5.0"
-          message="The type has an NCSS line count of {0}"
-          class="net.sourceforge.pmd.lang.apex.rule.design.NcssTypeCountRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#ncsstypecount">
-        <description>
-This rule uses the NCSS (Non-Commenting Source Statements) algorithm to determine the number of lines
-of code for a given type. NCSS ignores comments, and counts actual statements. Using this algorithm,
-lines of code that are split are counted as one.
-        </description>
-        <priority>3</priority>
-        <example>
-<![CDATA[
-//this class only has 6 NCSS lines
-public class Foo extends Bar {
-    public Foo() {
-        super();
-
-
-
-
-
-        super.foo();
-    }
 }
 ]]>
         </example>
@@ -303,37 +229,6 @@ public class Foo {
                 break;
         }
     }
-}
-]]>
-        </example>
-    </rule>
-
-    <rule name="TooManyFields"
-          since="5.5.0"
-          message="Too many fields"
-          class="net.sourceforge.pmd.lang.apex.rule.design.TooManyFieldsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#toomanyfields">
-        <description>
-Classes that have too many fields can become unwieldy and could be redesigned to have fewer fields,
-possibly through grouping related fields in new objects.  For example, a class with individual 
-city/state/zip fields could park them within a single Address field.
-        </description>
-        <priority>3</priority>
-        <example>
-<![CDATA[
-public class Person {
-    // too many separate fields
-    int birthYear;
-    int birthMonth;
-    int birthDate;
-    float height;
-    float weight;
-}
-
-public class Person {
-    // this is more manageable
-    Date birthDate;
-    BodyMeasurements measurements;
 }
 ]]>
         </example>

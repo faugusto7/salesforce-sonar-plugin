@@ -149,27 +149,90 @@ public class Foo {
         </example>
     </rule>
 
-    <rule name="VariableNamingConventions"
-          since="5.5.0"
-          message="{0} variable {1} should begin with {2}"
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VariableNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#variablenamingconventions">
+    <rule name="FieldNamingConventions"
+          since="6.15.0"
+          message="The instance field name doesn't match '[a-z][a-zA-Z0-9]*'"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.FieldNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#fieldnamingconventions">
         <description>
-A variable naming conventions rule - customize this to your liking.  Currently, it
-checks for final variables that should be fully capitalized and non-final variables
-that should not include underscores.
+Configurable naming conventions for field declarations. This rule reports variable declarations which do not match the regex that applies to their specific kind —e.g. constants (static final), static field, final field. Each regex can be configured through properties.
+By default this rule uses the standard Apex naming convention (Camel case).
         </description>
         <priority>1</priority>
         <example>
 <![CDATA[
 public class Foo {
-    public static final Integer MY_NUM = 0;
-    public String myTest = '';
-    DataModule dmTest = new DataModule();
+    Integer instanceField; // This is in camel case, so it's ok
+    Integer INSTANCE_FIELD; // This will be reported unless you change the regex
 }
 ]]>
         </example>
     </rule>
+
+    <rule name="FormalParameterNamingConventions"
+          since="6.15.0"
+          message="The formal parameter name doesn't match '[a-z][a-zA-Z0-9]*'"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.FormalParameterNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#formalparameternamingconventions">
+        <description>
+Configurable naming conventions for formal parameters of methods. This rule reports formal parameters which do not match the regex that applies to their specific kind (e.g. method parameter, or final method parameter). Each regex can be configured through properties.
+By default this rule uses the standard Apex naming convention (Camel case).
+        </description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+public class Foo {
+    public bar(Integer methodParameter) { } // This is in camel case, so it's ok
+    public baz(Integer METHOD_PARAMETER) { } // This will be reported unless you change the regex
+}
+]]>
+        </example>
+    </rule>
+
+    <rule name="LocalVariableNamingConventions"
+          since="6.15.0"
+          message="The local variable name doesn't match '[a-z][a-zA-Z0-9]*'"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.LocalVariableNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#localvariablenamingconventions">
+        <description>
+Configurable naming conventions for local variable declarations. 
+This rule reports variable declarations which do not match the regex that applies to their specific kind (e.g. local variable, or final local variable). 
+Each regex can be configured through properties.
+By default this rule uses the standard Apex naming convention (Camel case).
+        </description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+public class Foo {
+    public Foo() {
+        Integer localVariable; // This is in camel case, so it's ok
+
+        Integer LOCAL_VARIABLE; // This will be reported unless you change the regex
+    }
+}
+]]>
+        </example>
+    </rule>
+
+    <rule name="PropertyNamingConventions"
+          since="6.15.0"
+          message="The property name doesn't match '[a-z][a-zA-Z0-9]*'"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.PropertyNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#propertynamingconventions">
+        <description>
+Configurable naming conventions for property declarations. This rule reports property declarations which do not match the regex that applies to their specific kind (e.g. static property, or instance property). Each regex can be configured through properties.
+By default this rule uses the standard Apex naming convention (Camel case).
+        </description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+public class Foo {
+    public Integer instanceProperty { get; set; } // This is in camel case, so it's ok
+    public Integer INSTANCE_PROPERTY { get; set; } // This will be reported unless you change the regex
+}
+]]>
+        </example>
+    </rule>    
 
     <rule name="WhileLoopsMustUseBraces"
           language="apex"
